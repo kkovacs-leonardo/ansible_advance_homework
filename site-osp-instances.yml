@@ -1,4 +1,5 @@
-- hosts: workstation
+#- hosts: workstation
+- hosts: jumbox
   become: yes
   roles:
     - osp-servers
