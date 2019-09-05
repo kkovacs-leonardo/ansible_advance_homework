@@ -1,5 +1,5 @@
 #- hosts: workstation
-- hosts: jumbox
+- hosts: jumpbox
   become: yes
   roles:
     - osp-servers
