@@ -46,22 +46,3 @@
   delegate_to: "{{ inventory_hostname }}"
 
 
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-#Keypair: ansible_ssh
-#Networks: Private(int_network): 20.20.20.0/24
-#Ports Open: 8080/tcp, 22/tcp, icmp
