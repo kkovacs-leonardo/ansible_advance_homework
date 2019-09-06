@@ -26,7 +26,7 @@
     - meta
 
 
-- name: Add floating IP to Servers "{{ instance_name }}"
+- name: Add floating IP to Servers "{{ name }}"
   os_floating_ip:
     cloud: ospcloud
     state: present
@@ -42,7 +42,7 @@
   debug: var=instancefloatingip.floating_ip.floating_ip_address
 
 
-- name: Wait for server "{{ instance_name }}" to be available
+- name: Wait for server "{{ name }}" to be available
   wait_for:
     host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
     port: 22
