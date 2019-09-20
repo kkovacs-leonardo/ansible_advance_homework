@@ -1,2 +1,29 @@
 ---
 # tasks file for db-tier
+
+- name: Install progresql
+  yum:
+    name: postgresql-server
+    state: latest
+
+- name: Check if /var/lib/pgsql/data exists
+  find:
+    path: /var/lib/pgsql/data/
+  register: pgsql_data
+
+- name: Initilize postgresql
+  shell: "postgresql-setup initdb"
+  when: pgsql_data.matched < 1
+
+- name: Initilize postgres some more
+  command: chkconfig postgresql on
+
+- name: Enable postgresql at boot
+  service:
+    name: postgresql.service
+    enabled: yes
+
+- name: Start postgresql
+  service:
+    name: postgresql.service
+    state: started      
