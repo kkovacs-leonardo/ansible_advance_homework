@@ -1,0 +1,47 @@
+---
+# tasks file for app-tier-tomcat-apache
+
+# Tomcat webserver
+- name: Install "{{ webserver }}"
+  yum:
+    name: "{{ webserver }}"
+    state: latest
+
+- name: Enable "{{ webserver }}" at boot
+  service:
+    name: "{{ webserver }}"
+    enabled: yes
+
+- name: Create "{{ webserver }}" default web directory
+  file:
+    path: "{{ tomcat_path }}"
+    state: directory
+
+- name: Copy static index.html to "{{ webserver }}" webroot
+  template:
+    src: index.html.j2
+    dest: "{{ tomcat_path }}/index.html"
+    mode: 0644
+  notify: reload "{{ webserver }}" 
+
+- name: Start "{{ webserver }}"
+  service:
+    name: "{{ webserver }}"
+    state: restarted
+
+# Apache
+- name: Install apache
+  yum:
+    name: httpd
+    state: latest
+          
+- name: Enable apache at boot
+  service:
+    name: httpd
+    enabled: yes
+
+- name: Start apache
+  service:
+    name: httpd
+    state: started      
+
