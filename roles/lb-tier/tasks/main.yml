@@ -1,6 +1,13 @@
 ---
 # tasks file for lb-tier
 
+- name: install base tools and packages
+  yum:
+    name: "{{ item }}" 
+    state: latest
+  with_items:
+    - httpie
+
 - name: Install haproxy
   yum:
     name: haproxy
