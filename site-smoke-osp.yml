@@ -18,7 +18,7 @@
   
   - name: Debug curl results
     debug:
-      msg: {{ webpage }}      
+      var: webpage      
 
 #  - name: Curl website
 #    uri:
