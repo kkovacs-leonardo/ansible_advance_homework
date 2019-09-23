@@ -36,7 +36,7 @@
   gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
-    - {name: app-tier-tomcat-apache, tags: [apps, tomcat, apache]}
+    - {name: app-tier, tags: [apps, tomcat, apache]}
 
 # Setup database tier
 - name: setup database tier
