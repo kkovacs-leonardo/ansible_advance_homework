@@ -26,6 +26,8 @@
   notify: reload haproxy  
 
 - name: Start haproxy
+  become: yes
   service:
     name: haproxy
-    state: restarted
+    state: started
+    enabled: yes
