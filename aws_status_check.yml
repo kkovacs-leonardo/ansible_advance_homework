@@ -1,4 +1,6 @@
-- hosts: tag_instance_filter_three_tier_app_k_kovacs
+# - hosts: tag_instance_filter_three_tier_app_k_kovacs
+# tag:instance_filter=three-tier-app-k.kovacs
+- hosts: tag_instance_filter_three-tier-app-k.kovacs
   gather_facts: false
   tasks:
   - name: Check the instances status
