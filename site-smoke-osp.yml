@@ -17,8 +17,8 @@
     with_items:
       - "{{ openstack_servers}}"
     register: webpage
-    tags:
-      - smokeTest
+#    tags:
+#      - smokeTest
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
