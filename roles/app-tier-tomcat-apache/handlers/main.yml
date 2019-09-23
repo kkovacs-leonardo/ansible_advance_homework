@@ -1,7 +1,0 @@
----
-# handlers file for app-tier-tomcat-apache
-
-- name: reload "{{ webserver }}"
-  service:
-    name: "{{ webserver }}"
-    state: reloaded

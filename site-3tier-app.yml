@@ -3,28 +3,42 @@
   roles:
   - name: osp-facts
 
+#- name: In memory inventory
+#  hosts: localhost
+#  tasks:  
+#  - name: Fetch instance info
+#    os_server_facts:
+#      cloud: ospcloud
+#      region_name: RegionOne
+#    register: fetch_result
+
+#  - name: Add host/s
+#    add_host:
+#      name: "{{ item.public_v4 }}"
+#      group: "{{ item.metadata.group }}"
+#      ansible_ssh_private_key_file: /home/cloud-user/.ssh/openstack.pem
+#      ansible_ssh_user: cloud-user
+#    with_items: "{{fetch_result.ansible_facts.openstack_servers}}"
+
+
 # Setup front-end load balancer tier
-
-
 - name: setup load-balancer tier
   hosts: frontends
-  become: yes
+  become: false
   roles:
     - {name: base-config, tags: base-config}
     - {name: lb-tier, tags: [lbs, haproxy]}
 
 # Setup application servers tier
-
 - name: setup app tier
   hosts: apps
   become: yes
   gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
-    - {name: app-tier, tags: [apps, tomcat]}
+    - {name: app-tier-tomcat-apache, tags: [apps, tomcat, apache]}
 
 # Setup database tier
-
 - name: setup database tier
   become: yes
   hosts: appdbs
