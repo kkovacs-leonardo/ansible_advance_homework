@@ -1,9 +1,13 @@
 ---
 # tasks file for base-config
 
-- name: enable repos
-  template:
-    src: open_three-tier-app.repo
-    dest: /etc/yum.repos.d/open_three-tier-app.repo
+#- name: Enable repos
+#  template:
+#    src: open_three-tier-app.repo
+#    dest: /etc/yum.repos.d/open_three-tier-app.repo
 #    mode: 0644
-    mode: 0666
+
+- name: Enable repos
+  get_url:
+    url: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+    dest: /etc/yum.repos.d/internal.repo
