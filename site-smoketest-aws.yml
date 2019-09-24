@@ -2,15 +2,12 @@
   gather_facts: false
   tasks:
 
-  - name: Check that a page returns a status 200 and fail if the word is not in the page contents
+  - name: Use Uri module for wrting smoke test, Fail if 'Ansible has done its job' is not in the page content
     uri:
       url: http://{{ hostvars[groups['frontends'][0]].ansible_host }}
       return_content: yes
     register: webpage
     failed_when: "'Ansible has done its job' not in webpage.content"
 
-  - name: Debug 
-    debug:  
-      var: webpage
 
 
