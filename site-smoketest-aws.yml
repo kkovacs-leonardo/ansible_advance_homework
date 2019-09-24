@@ -2,27 +2,15 @@
   gather_facts: false
   tasks:
 
-  - name: Use Uri module for wrting smoke test.
-    uri: 
-#      url: http://{{ hostvars[groups['frontends'][0]].ansible_host }}
-#      url: "http://{{ inventory_hostname }}"
-      url: "http://{{ item }}/"
+  - name: Check that a page returns a status 200 and fail if the word is not in the page contents
+    uri:
+      url: http://{{ hostvars[groups['frontends'][0]].ansible_host }}
       return_content: yes
-      with_items:
-      - "{{ inventory_hostname }}"
-      delegate_to: localhost
-    register: webpage  
+    register: webpage
+    failed_when: "'Ansible has done its job' not in webpage.content"
 
   - name: Debug 
     debug:  
       var: webpage
 
-#  - name: Fail if 'Ansible has done its job' is not in the page content
-#    fail:
-#      when: "'Ansible has done its job' not in webpage.content"
-
-
-  - name: Fail if 'Ansible has done its job' is not in the page content
-    fail:
-    when: "'Ansible has done its job' not in webpage.results[0].content"
 
