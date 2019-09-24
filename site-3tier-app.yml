@@ -24,7 +24,6 @@
 # Setup front-end load balancer tier
 - name: setup load-balancer tier
   hosts: frontends
-#  become: false
   become: yes
   roles:
     - {name: base-config, tags: base-config}
