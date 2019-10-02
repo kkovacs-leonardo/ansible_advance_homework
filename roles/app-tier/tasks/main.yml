@@ -22,12 +22,10 @@
     src: index.html.j2
     dest: "{{ tomcat_path }}/index.html"
     mode: 0644
-#  notify: reload "{{ webserver }}" 
 
 - name: Start "{{ webserver }}"
   service:
     name: "{{ webserver }}"
-#    state: restarted
     state: started    
 
 # Apache

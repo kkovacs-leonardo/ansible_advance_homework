@@ -1,24 +1,3 @@
-#- hosts: workstation
-#  gather_facts: true
-#  roles:
-#  - name: osp-facts
-
-#- name: In memory inventory
-#  hosts: localhost
-#  tasks:  
-#  - name: Fetch instance info
-#    os_server_facts:
-#      cloud: ospcloud
-#      region_name: RegionOne
-#    register: fetch_result
-
-#  - name: Add host/s
-#    add_host:
-#      name: "{{ item.public_v4 }}"
-#      group: "{{ item.metadata.group }}"
-#      ansible_ssh_private_key_file: /home/cloud-user/.ssh/openstack.pem
-#      ansible_ssh_user: cloud-user
-#    with_items: "{{fetch_result.ansible_facts.openstack_servers}}"
 
 
 # Setup front-end load balancer tier
